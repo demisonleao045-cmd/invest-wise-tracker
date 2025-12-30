@@ -1,0 +1,21 @@
+CHECKLIST DE LANÇAMENTO — INVESTWISE TRACKER
+
+Antes de publicar:
+[ ] Rodar local: npm install && npx prisma migrate dev && npm run dev
+[ ] Testar: criar ativo, registrar compra/venda, cadastrar provento, ver dashboard
+[ ] Testar modo demo (Ajustes)
+[ ] Conferir páginas: /, /pro, /roadmap, /support, /terms, /privacy, /status, /changelog
+[ ] Confirmar ícones: favicon e PWA (manifest)
+
+Publicar (Vercel):
+[ ] Subir repo no GitHub
+[ ] Criar Postgres (Neon/Supabase)
+[ ] Setar DATABASE_URL na Vercel
+[ ] Deploy (vercel.json já está configurado)
+[ ] Testar endpoint: /api/health
+
+Depois de publicar:
+[ ] Adicionar domínio
+[ ] Criar e-mail real de suporte
+[ ] Criar 1 post no Instagram usando /public/press-square-1080.png
+[ ] Divulgar link do site

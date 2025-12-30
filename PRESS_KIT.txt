@@ -1,0 +1,16 @@
+PRESS KIT — INVESTWISE TRACKER
+
+Arquivos (em /public):
+- /og.png (1200x630) — compartilhamento (WhatsApp, Twitter, etc.)
+- /press-square-1080.png (1080x1080) — Instagram post
+- /brand/logo.png — logo
+
+Paleta:
+- Brand: #111827
+- Growth: #10B981
+- BG: #F3F4F6
+- Muted: #6B7280
+- Danger: #EF4444
+
+Frase:
+"Controle seus investimentos. Viva de renda com clareza."

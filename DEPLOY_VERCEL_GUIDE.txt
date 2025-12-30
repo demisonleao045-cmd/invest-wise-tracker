@@ -1,0 +1,35 @@
+INVESTWISE TRACKER — GUIA DE DEPLOY (VERCEL) — PASSO A PASSO
+
+Objetivo: publicar o app na web com banco Postgres e HTTPS.
+
+1) Suba o projeto no GitHub
+- Crie um repo e faça push do código.
+- Não comite .env (já está no .gitignore).
+
+2) Crie o banco Postgres (recomendado)
+Opções:
+- Neon
+- Supabase
+
+3) Copie a DATABASE_URL do Postgres (string de conexão)
+
+4) Vercel
+- Import Project → selecione o repo
+- Settings → Environment Variables
+  - DATABASE_URL = (sua URL)
+
+5) Prisma em produção
+No Vercel, em Build Command use:
+  npx prisma migrate deploy && npm run build
+
+6) Deploy
+- Clique Deploy
+- Abra a URL
+
+7) Domínio (opcional)
+- Adicione seu domínio
+- Vercel cria SSL automaticamente
+
+Observação:
+- Hoje o MVP usa SQLite local. Para produção, use Postgres.
+- Quando ativar login/Pro, você vai usar esse mesmo banco.

@@ -1,0 +1,19 @@
+INVESTWISE TRACKER — GUIA RÁPIDO DE MARCA
+
+Cores:
+- Primária (Brand): #111827
+- Secundária (Growth): #10B981
+- Fundo: #F3F4F6
+- Texto secundário: #6B7280
+- Erro: #EF4444
+
+Regras:
+- Verde só para “crescimento/sucesso”
+- Botão principal sempre Brand
+- Cards brancos com borda cinza e sombra leve
+
+Arquivos:
+- public/brand/logo.png  (logo original)
+- public/icon-192.png    (PWA)
+- public/icon-512.png    (PWA)
+- public/favicon.ico     (favicon)

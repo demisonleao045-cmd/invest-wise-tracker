@@ -1,0 +1,17 @@
+POSTGRES EM PRODUÇÃO (RECOMENDADO)
+
+O MVP roda localmente com SQLite (prisma/dev.db). Para publicar, use Postgres.
+
+Opções populares:
+- Neon
+- Supabase
+
+Passos (resumo):
+1) Crie o banco e pegue a DATABASE_URL
+2) Na Vercel, configure DATABASE_URL
+3) Garanta que o build rode:
+   npx prisma migrate deploy && npm run build
+
+Quando você for ativar login + plano Pro:
+- Use esse mesmo Postgres
+- Associe dados por usuário

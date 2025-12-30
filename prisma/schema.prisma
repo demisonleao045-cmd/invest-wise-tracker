@@ -1,0 +1,56 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Asset {
+  id        String   @id @default(cuid())
+  ticker    String   @unique
+  name      String?
+  type      String   // STOCK | FII | ETF | BDR | CRYPTO
+  createdAt DateTime @default(now())
+
+  holding   Holding?
+  txs       Transaction[]
+  provents  Provent[]
+}
+
+model Holding {
+  id        String   @id @default(cuid())
+  assetId   String   @unique
+  quantity  Float    @default(0)
+  avgPrice  Float    @default(0)
+  lastPrice Float    @default(0)
+  updatedAt DateTime @updatedAt
+
+  asset Asset @relation(fields: [assetId], references: [id])
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  assetId   String
+  date      DateTime
+  kind      String   // BUY | SELL
+  quantity  Float
+  price     Float
+
+  asset     Asset    @relation(fields: [assetId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Provent {
+  id            String   @id @default(cuid())
+  assetId       String
+  type          String   // DIVIDEND | JCP | RENT | BONUS
+  status        String   // ESTIMATED | CONFIRMED | PAID
+  exDate        DateTime?
+  payDate       DateTime
+  valuePerShare Float
+
+  asset     Asset @relation(fields: [assetId], references: [id])
+  createdAt DateTime @default(now())
+}
