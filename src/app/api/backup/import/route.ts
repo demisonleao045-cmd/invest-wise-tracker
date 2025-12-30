@@ -7,7 +7,8 @@ type Backup = {
     ticker: string;
     name: string | null;
     type: string;
-    holding: null | { quantity: number; avgPrice: number; currentPrice: number };
+    holding: null | { quantity: number; avgPrice: number; lastPrice: number;
+ };
   }>;
   transactions: Array<{
     ticker: string | null;
@@ -43,29 +44,29 @@ export async function POST(req: Request) {
   const idByTicker = new Map<string, string>();
 
   for (const a of body.assets) {
-    const ticker = String(a.ticker ?? "").trim().toUpperCase();
-    if (!ticker) continue;
+  const ticker = String(a.ticker ?? "").trim().toUpperCase();
+  if (!ticker) continue;
 
-    const asset = await prisma.asset.create({
+  const asset = await prisma.asset.create({
+    data: {
+      ticker,
+      name: a.name ?? ticker,
+      type: String(a.type ?? "STOCK").toUpperCase(),
+    },
+  });
+
+  if (a.holding) {
+    await prisma.holding.create({
       data: {
-        ticker,
-        name: a.name ? String(a.name) : null,
-        type: String(a.type ?? "STOCK").toUpperCase(),
+        assetId: asset.id,
+        quantity: Number(a.holding.quantity ?? 0),
+        avgPrice: Number(a.holding.avgPrice ?? 0),
+        lastPrice: Number(a.holding.lastPrice ?? 0),
       },
     });
-    idByTicker.set(ticker, asset.id);
-
-    if (a.holding) {
-      await prisma.holding.create({
-        data: {
-          assetId: asset.id,
-          quantity: Number(a.holding.quantity ?? 0),
-          avgPrice: Number(a.holding.avgPrice ?? 0),
-          currentPrice: Number(a.holding.currentPrice ?? 0),
-        },
-      });
-    }
   }
+}
+
 
   for (const t of body.transactions ?? []) {
     const ticker = (t.ticker ?? "").toString().trim().toUpperCase();
