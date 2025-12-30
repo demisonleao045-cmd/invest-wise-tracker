@@ -21,7 +21,8 @@ export async function GET() {
         ? {
             quantity: a.holding.quantity,
             avgPrice: a.holding.avgPrice,
-            currentPrice: a.holding.currentPrice,
+            precoAtual: a.holding.lastPrice,
+
           }
         : null,
     })),
