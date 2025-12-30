@@ -22,7 +22,6 @@ export async function GET() {
             quantity: a.holding.quantity,
             avgPrice: a.holding.avgPrice,
             precoAtual: a.holding.lastPrice,
-
           }
         : null,
     })),
